@@ -3,6 +3,11 @@ from app import app
 
 @app.route('/')
 
+@app.route('/login')
+def login():
+    user = {'username': 'Vili'}
+    return render_template('login.html', title='Home', user=user)
+
 @app.route('/index')
 def index():
     user = {'username': 'Vili'}
