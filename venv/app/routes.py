@@ -1,12 +1,19 @@
 from flask import Flask, request, render_template
 from app import app
+from app.form import LoginForm
 
 @app.route('/')
 
 @app.route('/login')
 def login():
+    form=LoginForm()
+    return render_template('login.html', title='Login', form=form)
+    
+@app.route('/register')
+def register():
     user = {'username': 'Vili'}
-    return render_template('login.html', title='Home', user=user)
+    return render_template('register.html', title='Register', user=user)
+        
 
 @app.route('/index')
 def index():
