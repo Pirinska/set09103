@@ -3,6 +3,7 @@ from app import app
 
 @app.route('/')
 
+
 @app.route('/login')
 def login():
     user = {'username': 'Vili'}
