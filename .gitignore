@@ -36,6 +36,7 @@ nosetests.xml
 .project
 .pydevproject
 
-venv
+Include
+#venv
 app.db
 set09103.log*
