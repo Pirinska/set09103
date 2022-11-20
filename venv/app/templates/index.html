@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="static/stylesheet/styling.css">
+{% extends "navbar.html" %}
+
+
+
+{% block content %}
+<body>
+
+    <h1>Hello, {{ user.username }}!</h1>
+         This is your homepage. Read about your health.</h1>
+        {% for todo in todos %}
+        <div><p>{{ todo.author.username }} says: <b>{{ todo.data }}</b></p></div>
+    {% endfor %}
+
+       
+</body>
+        
+    
+{% endblock %}
