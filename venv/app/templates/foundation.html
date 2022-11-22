@@ -27,30 +27,31 @@
 
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
-
-
-                    <li class="nav-item">
-                        <a href="/login" class="nav-link">Login</a>
-                    </li>
-
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a href="/index" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/calculate" class="nav-link">Calculate</a>
+                        <a href="/calculate" id="calculate" class="nav-link">Calculate</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/plan" class="nav-link">Plan</a>
+                        <a href="/plan" id="plan" class="nav-link">Plan</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/userProfile" class="nav-link">User Profile</a>
+                    <a href="/userProfile" id="userProfile" class="nav-link">User Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/register" class="nav-link">Register</a>
+                        <a href="/logout" id="logout" class="nav-link">Logout</a>
                     </li>
+                    {% else %}
                     <li class="nav-item">
-                        <a href="/login" class="nav-link">Logout</a>
+                        <a href="/login" id="login" class="nav-link">Login</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="/register" id="register" class="nav-link">Register</a>
+                    </li>
+                    {% endif %}
 
                 </ul>
             </div>
