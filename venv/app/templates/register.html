@@ -2,32 +2,38 @@
 {% block content %}
 
 <html>
-    <body>
-        <div class="column1">
+
+<body>
+    <div class="column1">
         <h1>Welcome to IMPACT!</h1>
+
         <h4>Please add a strong password and create an account.</h4>
 
         <div class="m-4">
             <form method="POST">
-                
+
                 <div class="mb-3">
                     <label class="form-label" for="inputEmail"></label>
-                    <input type="email" class="form-control-lg" id="inputEmail" placeholder="Email" name="email" required>
+                    <input type="email" class="form-control-lg" id="inputEmail" placeholder="Email" name="email"
+                        required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="inputUsername"></label>
-                    <input type="text" class="form-control-lg" id="inputUsername" placeholder="Username" name="inputUsername" required>
+                    <input type="text" class="form-control-lg" id="inputUsername" placeholder="Username"
+                        name="username" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="inputPassword1"></label>
-                    <input type="password" class="form-control-lg" id="inputPassword1" placeholder="Password" name="inputPassword1" required>
+                    <input type="password" class="form-control-lg" id="inputPassword1" placeholder="Password"
+                        name="password1" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="inputPassword2"></label>
-                    <input type="password" class="form-control-lg" id="inputPassword2" placeholder="Confirm password" name="inputPassword2" required>
+                    <input type="password" class="form-control-lg" id="inputPassword2" placeholder="Confirm password"
+                        name="password2" required>
                 </div>
 
                 <div class="mb-3">
@@ -36,16 +42,16 @@
                         <label class="form-check-label" for="checkRemember">Remember me</label>
                     </div>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>
     </div>
     <div class="column2">
         <img src="static/images/login.jpg" alt="woman doing yoga">
-</div>
-    </body>
+    </div>
+</body>
 
-    </html>
+</html>
 
 {% endblock %}
