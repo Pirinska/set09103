@@ -1,7 +1,8 @@
+import json
 from click import password_option
-from flask import Flask, request, render_template, flash, Blueprint, redirect, url_for
+from flask import Flask, jsonify, request, render_template, flash, Blueprint, redirect, url_for
 from flask_login import current_user, login_user, logout_user
-from .models import User
+from .models import User, Todo
 from flask_login import login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -76,9 +77,20 @@ def calculate():
     return render_template('calculate.html', title='Calculate', user=current_user)
 
 
-@views.route('/plan')
+@views.route('/plan', methods=['GET', 'POST'])
 @login_required
 def plan():
+    if request.method == 'POST':
+        todo = request.form.get('todo')
+
+        if len(todo) < 3:
+            flash('Text is too short!', category='error')
+        else:
+            new_todo = Todo(body=todo, user_id=current_user.id)
+            db.session.add(new_todo)
+            db.session.commit()
+            flash('Wohoo, you added a workout!', category='success')
+
     return render_template('plan.html', title='Plan', user=current_user)
 
 
@@ -86,3 +98,18 @@ def plan():
 @login_required
 def userProfile():
     return render_template('userProfile.html', title='User Profile', user=current_user)
+
+
+@views.route('/delete-todo', methods=['POST'])
+def delete_todo():
+    todo = json.loads(request.data) 
+    todoId = todo['todoId']
+    todo = Todo.query.get(todoId)
+    if todo:
+        if todo.user_id == current_user.id:
+            db.session.delete(todo)
+            db.session.commit()
+    
+    return jsonify({})
+
+    

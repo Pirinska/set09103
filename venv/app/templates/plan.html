@@ -1,10 +1,35 @@
 {% extends "foundation.html" %}
 
 {% block content %}
+
 <body>
-        <h1>Hello!</h1>
-        <h4>This is your to-do list page.</h4>
+        <h1>Your to-do list</h1>
+        <h4>Plan your workout sessions this week.</h4>
+        <br><br>
+        <ul class="list-group list-group-flush" id="todos">
+                {% for todo in user.todos %}
+                <li class="list-group-item">
+                        {{ todo.body }}
+                        <button type="button" class="close" onClick="deleteTodo({{ todo.id }})">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                </li>
+                {% endfor %}
+
+        </ul>
+        <form method="POST">
+                <textarea name="todo" id="'todo" class="form-control"></textarea>
+                <div align="center">
+                        <br>
+                        <button type="submit" class="btn btn-primary"> Add workout</button>
+                </div>
+        </form>
+        <script 
+        type="text/javascript"
+         src="{{ url_for('static', filename='foundation.js') }}"
+         ></script>
+
 </body>
 
-        
+
 {% endblock %}
