@@ -2,22 +2,23 @@
 {% block content %}
 
 
-    <body>
-        <div class="column1">
+<body>
+    <div class="column1">
         <h1>Welcome to IMPACT!</h1>
         <h4>Please type your email and password and login to your account.</h4>
         <div class="m-4">
             <form method="POST">
-                
+
                 <div class="mb-3">
                     <label class="form-label" for="inputEmail"></label>
-                    <input type="email" class="form-control-lg" id="inputEmail" placeholder="Email" name="email" required>
+                    <input type="email" class="form-control-lg" id="inputEmail" placeholder="Email" name="email"
+                        required>
                 </div>
 
-            
                 <div class="mb-3">
                     <label class="form-label" for="inputPassword"></label>
-                    <input type="password" class="form-control-lg" id="inputPassword" placeholder="Password" name="inputPassword" required>
+                    <input type="password" class="form-control-lg" id="inputPassword" placeholder="Password"
+                        name="inputPassword" required>
                 </div>
 
                 <div class="mb-3">
@@ -26,22 +27,19 @@
                         <label class="form-check-label" for="checkRemember">Remember me</label>
                     </div>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>
-
-            
-         </div>
-    </div>
-
     <div class="column2">
         <img src="static/images/login.jpg" alt="woman doing yoga">
     </div>
+</body>
 
-    </body>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-637e6420d96ff20e"></script>
 
-    </html>
-   
-    {% endblock %}
+</html>
+
+{% endblock %}

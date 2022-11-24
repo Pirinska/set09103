@@ -48,17 +48,17 @@ def register():
         elif len(password1) < 8:
             flash('Your password need to be 8 or more characters.', category='error')
         else:
-            new_user = User(email=email, password=generate_password_hash(
-                password1, method='sha256'), first_name=first_name,)
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(
+                password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash('You registered successfully', category='success')
             return redirect(url_for('views.index'))
     return render_template('register.html', title='Register', user=current_user)
 
 
-@views.route('/logout')
+@views.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
@@ -71,7 +71,7 @@ def index():
     return render_template('index.html', title='Home', user=current_user)
 
 
-@views.route('/calculate')
+@views.route('/calculate', methods=['GET', 'POST'])
 @login_required
 def calculate():
     return render_template('calculate.html', title='Calculate', user=current_user)
@@ -94,13 +94,13 @@ def plan():
     return render_template('plan.html', title='Plan', user=current_user)
 
 
-@views.route('/userProfile')
+@views.route('/userProfile', methods=['GET', 'POST'])
 @login_required
 def userProfile():
     return render_template('userProfile.html', title='User Profile', user=current_user)
 
 
-@views.route('/delete-todo', methods=['POST'])
+@views.route('/delete-todo', methods=['GET', 'POST'])
 def delete_todo():
     todo = json.loads(request.data) 
     todoId = todo['todoId']

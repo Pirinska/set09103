@@ -1,14 +1,15 @@
 {% extends "foundation.html" %}
 
-
-
 {% block content %}
 <body>
-
-    <h1>Hello,!</h1>
-    <h4>This is your homepage. Read about your health.</h4>
-       
- 
+    <section class="hero">
+        <div class="hero_inner">
+    <h1>Welcome, {{ user.first_name }}!</h1>
+    <h4> This is your fitness planner. The planner will help you track your measurements, plan your weeks and read about latest news about healthy lifestyle.</h4> 
+    <br> <br>
+    <a href='/plan'><button type="submit" class="btn btn-lg btn-primary">Let's plan</button>
+    </div>   </a>
+    </section>
 </body>
         
     

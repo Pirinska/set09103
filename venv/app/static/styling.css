@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Inter");
+@import url("https://fonts.googleapis.com/css?family=Syne");
 
-* {
+body {
   font-family: "Inter", sans-serif;
 
 }
 
 body {
   background-color: #212529;
-
+  margin: 70px 0px 0px 0px;
 }
 
 .navbar {
@@ -20,14 +21,24 @@ body {
 .navbar .navbar-brand {
   font-size: 30px;
   color: #FFFFFF;
-}
-
-.navbar-brand {
-  font-size: 30px;
-  color: #FFFFFF;
-  font-family: "Syne", sans-serif, bold;
+  font-family: "Syne", bold;
 
 }
+
+.navbar-nav li a {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white !important;
+}
+
+.navbar-nav li a:hover {
+  color: #7B28C8 !important;
+}
+
+.nav-item li:active {
+  color: #7B28C8 !important;
+}
+
 
 .navbar .nav-link {
   font-size: 20px;
@@ -40,19 +51,10 @@ body {
 }
 
 
-
-.btn-primary {
-  background-color: #7B28C8;
-}
-
-.btn-primary:hover {
-  background-color: #471a72;
-
-
-}
-
 h1 {
-  margin: 150px 0px 0px 30px;
+  font-family: "Syne", bold;
+  font-size: 2.5em;
+  margin: 50px 0px 0px 30px;
   color: white;
 }
 
@@ -65,23 +67,54 @@ h4 {
   color: white;
 }
 
+
+.labels {
+  color: #FFFFFF;
+}
+
+.hero {
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url("/static/images/hero-background01.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.hero h1,
+.hero h4 {
+  width: 65vw;
+}
+
+.btn-primary {
+
+  background-color: #7B28C8;
+}
+
+.btn-primary:hover {
+  background-color: #471a72;
+
+}
+.column1 {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-.column1 {
-  width: 50%;
-  float: left;
-}
-
 .column2 {
   width: 50%;
   height: 100%;
   float: right;
 }
-
 @media screen and (max-width: 600px) {
 
   .column1,
@@ -90,6 +123,14 @@ img {
   }
 }
 
-.labels {
-  color: #FFFFFF;
+.addWorkout {
+  margin:30px;
+  width: 40vw;
+  height: 10vh;
+}
+
+.list-group-item {
+  color:white;
+  background-color: #212529;
+  border-color: #FFFFFF;
 }
