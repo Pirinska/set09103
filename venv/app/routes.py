@@ -52,6 +52,7 @@ def register():
                 password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
+
             login_user(new_user, remember=True)
             flash('You registered successfully', category='success')
             return redirect(url_for('views.index'))
@@ -102,14 +103,13 @@ def userProfile():
 
 @views.route('/delete-todo', methods=['GET', 'POST'])
 def delete_todo():
-    todo = json.loads(request.data) 
+    todo = json.loads(request.data)
     todoId = todo['todoId']
     todo = Todo.query.get(todoId)
     if todo:
         if todo.user_id == current_user.id:
             db.session.delete(todo)
             db.session.commit()
-    
+
     return jsonify({})
 
-    

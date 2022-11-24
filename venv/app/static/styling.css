@@ -8,14 +8,12 @@ body {
 
 body {
   background-color: #212529;
-  margin: 70px 0px 0px 0px;
 }
 
 .navbar {
   -webkit-box-shadow: 0 8px 6px -6px rgba(240, 240, 240, 0.253);
   -moz-box-shadow: 0 8px 6px -6px rgba(240, 240, 240, 0.253);
   box-shadow: 0 8px 6px -6px rgba(240, 240, 240, 0.253);
-
 }
 
 .navbar .navbar-brand {
@@ -54,12 +52,11 @@ body {
 h1 {
   font-family: "Syne", bold;
   font-size: 2.5em;
-  margin: 75px 0px 0px 30px;
+  margin: 75px 0px 0px 0px;
   color: white;
 }
 
 h4 {
-  margin: 0px 30px 0px 30px;
   color: white;
 }
 
@@ -86,10 +83,7 @@ h4 {
   background-attachment: fixed;
 }
 
-.hero h1,
-.hero h4 {
-  width: 65vw;
-}
+
 
 .btn-primary {
 
@@ -101,7 +95,8 @@ h4 {
 
 }
 .column1 {
-  width: 50%;
+  margin: 0px 0px 0px 50px;
+  width: 35%;
   height: 100%;
   float: left;
 }
@@ -115,22 +110,21 @@ img {
   height: 100%;
   float: right;
 }
+
+.list-group-item {
+  color:white;
+  background-color: #212529;
+  border-color: #FFFFFF;
+}
+
 @media screen and (max-width: 600px) {
 
   .column1,
   .column2 {
     width: 100%;
   }
-}
-
-.addWorkout {
-  margin:30px;
-  width: 40vw;
-  height: 10vh;
-}
-
-.list-group-item {
-  color:white;
-  background-color: #212529;
-  border-color: #FFFFFF;
+  h1, h4 {
+    width:80%;
+    margin:none;
+  }
 }
