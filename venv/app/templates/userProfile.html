@@ -1,10 +1,42 @@
 {% extends "foundation.html" %}
 
 {% block content %}
-        <body>
 
-        <h1>Hello! </h1>
-        <h4>This is your profile page. Check your measure history.</h4>
-    
-        </body>
+<body>
+        <div class="column1">
+                <h1>User Profile </h1>
+                <br>
+                <div class="card">
+                        <h5 class="card-header">Personal Details</h5>
+                        <div class="card-body">
+                                <p class="card-text">Name: {{ current_user.first_name}}</p>
+                                <p class="card-text">Email: {{ current_user.email}}</p>
+                                <p class="card-text">User ID: {{ current_user.id}}</p>
+                                <a href="#" class="btn btn-primary">Edit details</a>
+                        </div>
+                </div>
+                <br> <br>
+                <!-- <div class="card">
+                        <h5 class="card-header">Edit Details</h5>
+                        <div class="card-body">
+                                <form method="POST">
+                                        <div class="mb-3">
+                                                <label class="form-label" for="newEmail"> New email:</label>
+                                                <input type="email" class="form-control" id="newEmail"
+                                                        placeholder="Email" name="newEmail" required>
+                                        </div>
+                                        <div class="mb-3">
+                                                <label class="form-label" for="new_first_name">Full name:</label>
+                                                <input type="text" class="form-control" id="new_first_name"
+                                                        placeholder="Full name" name="new_first_name" required>
+                                        </div>
+
+                                        <a href='/update_details' type="submit" class="btn btn-primary">Submit
+                                                details</a>
+                                </form>
+
+                        </div>
+                </div> -->
+        </div>
+</body>
 {% endblock %}
