@@ -3,40 +3,72 @@
 {% block content %}
 
 <body>
-        <div class="column1">
+        <div class="column3">
                 <h1>User Profile </h1>
                 <br>
                 <div class="card">
                         <h5 class="card-header">Personal Details</h5>
                         <div class="card-body">
-                                <p class="card-text">Name: {{ current_user.first_name}}</p>
-                                <p class="card-text">Email: {{ current_user.email}}</p>
-                                <p class="card-text">User ID: {{ current_user.id}}</p>
+                                <p class="card-text"><b>Name:</b> {{ current_user.first_name}}</p>
+                                <p class="card-text"><b>Email:</b> {{ current_user.email}}</p>
+
                                 <a href="#" class="btn btn-primary">Edit details</a>
                         </div>
                 </div>
-                <br> <br>
-                <!-- <div class="card">
-                        <h5 class="card-header">Edit Details</h5>
+                <br>
+                <h2>Measurement tracker</h2>
+                <h5> Please type your measurements in either CM or inches.</h5>
+                <br>
+                <div class="card">
+                        <h5 class="card-header">Add new measurements:</h5>
                         <div class="card-body">
                                 <form method="POST">
-                                        <div class="mb-3">
-                                                <label class="form-label" for="newEmail"> New email:</label>
-                                                <input type="email" class="form-control" id="newEmail"
-                                                        placeholder="Email" name="newEmail" required>
+                                        <div class="row g-3">
+                                                 <div class="measure-item">
+                                                <label class="form-label" for="height"></label>
+                                                <input type="email" class="form-control" id="height"
+                                                        placeholder="HEIGHT" name="height" required>
                                         </div>
-                                        <div class="mb-3">
-                                                <label class="form-label" for="new_first_name">Full name:</label>
-                                                <input type="text" class="form-control" id="new_first_name"
-                                                        placeholder="Full name" name="new_first_name" required>
+                                        <div class="measure-item">
+                                                <label class="form-label" for="weight"></label>
+                                                <input type="text" class="form-control" id="weight"
+                                                        placeholder="WEIGHT" name="weight" required>
                                         </div>
-
-                                        <a href='/update_details' type="submit" class="btn btn-primary">Submit
-                                                details</a>
-                                </form>
-
+                                        <div class="measure-item">
+                                                <label class="form-label" for="hips"></label>
+                                                <input type="text" class="form-control" id="hips"
+                                                        placeholder="HIPS" name="hips" required>
+                                        </div>
+                                        <div class="measure-item">
+                                                <label class="form-label" for="waist"></label>
+                                                <input type="text" class="form-control" id="waist"
+                                                        placeholder="WAIST" name="waist" required>
+                                        </div>
+                                        <div class="measure-item">
+                                                <label class="form-label" for="arm"></label>
+                                                <input type="text" class="form-control" id="arm"
+                                                        placeholder="UPPER ARM" name="arm" required>
+                                        </div>
+                                        <div class="measure-item">
+                                                <label class="form-label" for="chest"></label>
+                                                <input type="text" class="form-control" id="chest"
+                                                        placeholder="CHEST" name="chest" required>
+                                        </div>
+                                        <div class="measure-item">
+                                                <label class="form-label" for="thigh"></label>
+                                                <input type="text" class="form-control" id="thigh"
+                                                        placeholder="CALF" name="chest" required>
+                                        </div>
                         </div>
-                </div> -->
+                        </form>
+                        <br> <br>
+                        <a href='/add-measurements' type="submit" class="btn btn-primary">Add measurements</a>
+
+                        </form>
+
+                </div>
         </div>
+        </div>
+
 </body>
 {% endblock %}
