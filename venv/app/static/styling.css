@@ -103,6 +103,7 @@ h4, h2, h5 {
   margin: 0px 0px 0px 50px;
   width: 90%;
   float: left;
+  height: 1300px;
 }
 .measure-item {
   width:12%;
@@ -137,10 +138,5 @@ img {
   h1, h4 {
     width:80%;
     margin:none;
-  }
-  .navbar .navbar-brand {
-    margin-left: -0px !important;
-    margin-right:-0px !important;
-  
   }
   }
