@@ -16,7 +16,7 @@ def create_app():
     from .routes import views
     app.register_blueprint(views, url_prefix='/')
 
-    from .models import User, Todo
+    from .models import User, Todo, MeasureLog
     
     from . import models
 
