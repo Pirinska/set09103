@@ -56,7 +56,7 @@ h1 {
   color: white;
 }
 
-h4, h2, h5 {
+h4, h2 {
   color: white;
 }
 
@@ -106,7 +106,7 @@ h4, h2, h5 {
   height: 1300px;
 }
 .measure-item {
-  width:12%;
+  width:160px;
 }
 
 img {
@@ -128,7 +128,7 @@ img {
 
 @media screen and (max-width: 600px) {
 
-  .column1 {
+  .column1, .column3 {
     width:80%;
 
   }
