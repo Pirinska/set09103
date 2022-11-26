@@ -15,60 +15,59 @@
                                 <a href="#" class="btn btn-primary">Edit details</a>
                         </div>
                 </div>
-                <br>
+                <br> <br>
                 <h2>Measurement tracker</h2>
-                <h5> Please type your measurements in either CM or inches.</h5>
                 <br>
                 <div class="card">
-                        <h5 class="card-header">Add new measurements:</h5>
+                        <h5 class="card-header">New measurements</h5>
                         <div class="card-body">
+                                <p class="card-text"> Please type your measurements in either CM or inches.</p>
                                 <form method="POST">
                                         <div class="row g-3">
-                                                 <div class="measure-item">
-                                                <label class="form-label" for="height"></label>
-                                                <input type="email" class="form-control" id="height"
-                                                        placeholder="HEIGHT" name="height" required>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="height"></label>
+                                                        <input type="email" class="form-control" id="height"
+                                                                placeholder="HEIGHT" name="height" required>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="weight"></label>
+                                                        <input type="text" class="form-control" id="weight"
+                                                                placeholder="WEIGHT" name="weight" required>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="hips"></label>
+                                                        <input type="text" class="form-control" id="hips"
+                                                                placeholder="HIPS" name="hips" required>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="waist"></label>
+                                                        <input type="text" class="form-control" id="waist"
+                                                                placeholder="WAIST" name="waist" required>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="arm"></label>
+                                                        <input type="text" class="form-control" id="arm"
+                                                                placeholder="UPPER ARM" name="arm" required>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="chest"></label>
+                                                        <input type="text" class="form-control" id="chest"
+                                                                placeholder="CHEST" name="chest" required>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="thigh"></label>
+                                                        <input type="text" class="form-control" id="thigh"
+                                                                placeholder="CALF" name="chest" required>
+                                                </div>
                                         </div>
-                                        <div class="measure-item">
-                                                <label class="form-label" for="weight"></label>
-                                                <input type="text" class="form-control" id="weight"
-                                                        placeholder="WEIGHT" name="weight" required>
-                                        </div>
-                                        <div class="measure-item">
-                                                <label class="form-label" for="hips"></label>
-                                                <input type="text" class="form-control" id="hips"
-                                                        placeholder="HIPS" name="hips" required>
-                                        </div>
-                                        <div class="measure-item">
-                                                <label class="form-label" for="waist"></label>
-                                                <input type="text" class="form-control" id="waist"
-                                                        placeholder="WAIST" name="waist" required>
-                                        </div>
-                                        <div class="measure-item">
-                                                <label class="form-label" for="arm"></label>
-                                                <input type="text" class="form-control" id="arm"
-                                                        placeholder="UPPER ARM" name="arm" required>
-                                        </div>
-                                        <div class="measure-item">
-                                                <label class="form-label" for="chest"></label>
-                                                <input type="text" class="form-control" id="chest"
-                                                        placeholder="CHEST" name="chest" required>
-                                        </div>
-                                        <div class="measure-item">
-                                                <label class="form-label" for="thigh"></label>
-                                                <input type="text" class="form-control" id="thigh"
-                                                        placeholder="CALF" name="chest" required>
-                                        </div>
+                                </form>
+                                <br> <br>
+                                <a href='/add-measurements' type="submit" class="btn btn-primary">Add measurements</a>
+
+                                </form>
+
                         </div>
-                        </form>
-                        <br> <br>
-                        <a href='/add-measurements' type="submit" class="btn btn-primary">Add measurements</a>
-
-                        </form>
-
                 </div>
         </div>
-        </div>
-
 </body>
 {% endblock %}
