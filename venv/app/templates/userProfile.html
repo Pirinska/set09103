@@ -21,57 +21,91 @@
                 <div class="card">
                         <h5 class="card-header">Add New Measuements</h5>
                         <div class="card-body">
-                                        <form method="POST">
-                                                <div class="row">
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="height"></label>
-                                                                <input type="email" class="form-control" id="height"
-                                                                        placeholder="HEIGHT" name="height" required>
-                                                        </div>
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="weight"></label>
-                                                                <input type="text" class="form-control" id="weight"
-                                                                        placeholder="WEIGHT" name="weight" required>
-                                                        </div>
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="hips"></label>
-                                                                <input type="text" class="form-control" id="hips"
-                                                                        placeholder="HIPS" name="hips" required>
-                                                        </div>
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="waist"></label>
-                                                                <input type="text" class="form-control" id="waist"
-                                                                        placeholder="WAIST" name="waist" required>
-                                                        </div>
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="arm"></label>
-                                                                <input type="text" class="form-control" id="arm"
-                                                                        placeholder="UPPER ARM" name="arm" required>
-                                                        </div>
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="chest"></label>
-                                                                <input type="text" class="form-control" id="chest"
-                                                                        placeholder="CHEST" name="chest" required>
-                                                        </div>
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="thigh"></label>
-                                                                <input type="text" class="form-control" id="thigh"
-                                                                        placeholder="THIGH" name="thigh" required>
-                                                        </div>
-                                                        <div class="measure-item">
-                                                                <label class="form-label" for="calf"></label>
-                                                                <input type="text" class="form-control" id="calf"
-                                                                        placeholder="CALF" name="calf" required>
-                                                        </div>
+                                <form method="POST">
+                                        <div class="row">
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="height"></label>
+                                                        <textarea type="email" class="form-control" id="height"
+                                                                placeholder="HEIGHT" name="height" required></textarea>
                                                 </div>
-                                        </form>
-                                        <br> <br>
-                                        <a href='/add-measurements' type="submit" class="btn btn-primary">Add
-                                                measurements</a>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="weight"></label>
+                                                        <textarea type="text" class="form-control" id="weight"
+                                                                placeholder="WEIGHT" name="weight" required></textarea>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="hips"></label>
+                                                        <textarea type="text" class="form-control" id="hips"
+                                                                placeholder="HIPS" name="hips" required></textarea>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="waist"></label>
+                                                        <textarea type="text" class="form-control" id="waist"
+                                                                placeholder="WAIST" name="waist" required></textarea>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="arm"></label>
+                                                        <textarea type="text" class="form-control" id="arm"
+                                                                placeholder="UPPER ARM" name="arm" required></textarea>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="chest"></label>
+                                                        <textarea type="text" class="form-control" id="chest"
+                                                                placeholder="CHEST" name="chest" required></textarea>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="thigh"></label>
+                                                        <textarea type="text" class="form-control" id="thigh"
+                                                                placeholder="THIGH" name="thigh" required></textarea>
+                                                </div>
+                                                <div class="measure-item">
+                                                        <label class="form-label" for="calf"></label>
+                                                        <textarea type="text" class="form-control" id="calf"
+                                                                placeholder="CALF" name="calf" required></textarea>                                                </div>
+                                        </div>
 
-                                        </form>
+                                        <br> <br>
+                                        <button type="submit" class="btn btn-lg btn-primary"> Add
+                                                workout</button>
+
+                                </form>
 
                         </div>
+                </div>
+                <h1>Measurement history</h1>
+                <br>
+                <div class="card">
+                <ul class="card-body" id="measurelogs" color="#000000">
+                        {% for measurelog in user.measurelogs %}
+                        <li class="measure-item">
+                                <b>Height: </b> {{ measurelog.height }}
+                        </li>
+                        <li class="measure-item">
+                                <b>Weight: </b> {{ measurelog.weight }}
+                        </li>
+                        <li class="measure-item">
+                                <b>Hips: </b> {{ measurelog.hips }}
+                        </li>
+                        <li class="measure-item">
+                                <b>Waist: </b> {{ measurelog.waist }}
+                        </li>
+                        <li class="measure-item">
+                                <b>Upper arm: </b> {{ measurelog.upper_arm }}
+                        </li>
+                        <li class="measure-item">
+                                <b>Chest: </b> {{ measurelog.chest }}
+                        </li>
+                        <li class="measure-item">
+                                <b>Thigh: </b> {{ measurelog.thigh }}
+                        </li>
+                        <li class="measure-item">
+                                <b>Calf: </b> {{ measurelog.calf }}
+                        </li>                     
+                        <b> Date added: </b> {{ measurelog.date }}
+                        {% endfor %}
+
+                </ul>
+                </div>
                 </div>
         </div>
 </body>

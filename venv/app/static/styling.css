@@ -108,6 +108,11 @@ h4, h2 {
 .measure-item {
   width:160px;
 }
+.measure-item textarea {
+  resize: none;
+
+  height:40px;
+}
 
 img {
   width: 100%;
