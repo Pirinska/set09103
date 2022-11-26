@@ -9,11 +9,23 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(50))
     first_name = db.Column(db.String(100))
     todos = db.relationship('Todo')
+    measurelog = db.relationship('MeasureLog')
     
-
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(500))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+class MeasureLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    height = db.Column(db.String(50))
+    weight = db.Column(db.String(50))
+    hips = db.Column(db.String(50))
+    waist = db.Column(db.String(50))
+    upper_arm = db.Column(db.String(50))
+    chest = db.Column(db.String(50))
+    thigh = db.Column(db.String(50))
+    calf = db.Column(db.String(50))
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
