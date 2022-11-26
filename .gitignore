@@ -38,5 +38,5 @@ nosetests.xml
 
 Include
 #venv
-app.db
-set09103.log*
+# app.db
+# set09103.log*
