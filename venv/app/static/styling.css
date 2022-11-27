@@ -42,6 +42,9 @@ body {
   font-size: 20px;
 
 }
+.nav-link {
+  color:white;
+}
 
 .fa-bars {
   color: #FFFFFF;
@@ -56,7 +59,7 @@ h1 {
   color: white;
 }
 
-h4, h2 {
+h4, h2,h5 {
   color: white;
 }
 
@@ -147,4 +150,7 @@ p {
     width:80%;
     margin:none;
   }
+  }
+  .home-body {
+    width: 70vw;
   }

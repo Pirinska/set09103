@@ -1,7 +1,7 @@
 {% extends "foundation.html" %}
 
 {% block content %}
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
         <div class="column3">
                 <h1>User Profile </h1>
@@ -11,8 +11,6 @@
                         <div class="card-body">
                                 <p class="card-text"><b>Name:</b> {{ current_user.first_name}}</p>
                                 <p class="card-text"><b>Email:</b> {{ current_user.email}}</p>
-
-                                <button type="submit" class="btn btn-lg btn-primary"> Edit details</button>
                         </div>
                 </div>
                 <br>
@@ -46,7 +44,8 @@
                                                 <div class="measure-item">
                                                         <label class="form-label" for="upper_arm"></label>
                                                         <textarea type="text" class="form-control" id="upper_arm"
-                                                                placeholder="UPPER ARM" name="upper_arm" required></textarea>
+                                                                placeholder="UPPER ARM" name="upper_arm"
+                                                                required></textarea>
                                                 </div>
                                                 <div class="measure-item">
                                                         <label class="form-label" for="chest"></label>
@@ -67,7 +66,7 @@
 
                                         <br> <br>
                                         <button type="submit" class="btn btn-lg btn-primary"> Add
-                                                workout</button>
+                                                measure</button>
 
                                 </form>
 
@@ -105,10 +104,8 @@
                                                 <td>{{ measurelog.thigh }}</td>
                                                 <td>{{ measurelog.calf }}</td>
                                                 <td>{{ measurelog.upper_arm }}</td>
-                                                <td><button type="button" class="btn btn-close-white float-center"
-                                                                onClick="deleteMeasureLog({{ measurelog.id }})">
-                                                                <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                <td>
+                                                <i class="fa fa-trash-o" onClick="deleteMeasureLog({{ measurelog.id }})" style="font-size:24px;color:white; background-color:none;"></i>
                                                 </td>
                                         </tr>
                                         {% endfor %}

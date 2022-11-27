@@ -2,6 +2,7 @@ import json
 from click import password_option
 from flask import Flask, jsonify, request, render_template, flash, Blueprint, redirect, url_for
 from flask_login import current_user, login_user, logout_user
+import requests
 from .models import User, Todo, MeasureLogs
 from flask_login import login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -69,18 +70,25 @@ def logout():
 @views.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    return render_template('index.html', title='Home', user=current_user)
+    res = requests.get(f'http://api.mediastack.com/v1/news?access_key=9ac9b232ed136147d61e2df0eb305548&keywords=workout&categories=health&countries=us,gb,ca,au')
+    if res.status_code == 200:
+        news_data = res.json()
+        return render_template("index.html", news_data = news_data['data'], title='Home', user=current_user)
+    else:
+        return render_template('index.html', title='Home', user=current_user)
+   
 
-
-@views.route('/calculate', methods=['GET', 'POST'])
-@login_required
-def calculate():
-    return render_template('calculate.html', title='Calculate', user=current_user)
 
 
 @views.route('/plan', methods=['GET', 'POST'])
 @login_required
 def plan():
+    return render_template('plan.html', title='User Profile', user=current_user)
+
+
+@views.route('/addtodo', methods=['GET', 'POST'])
+@login_required
+def addtodo():
     if request.method == 'POST':
         todo = request.form.get('todo')
 
@@ -98,6 +106,26 @@ def plan():
 @views.route('/userProfile', methods=['GET', 'POST'])
 @login_required
 def userProfile():
+
+    return render_template('userProfile.html', title='User Profile', user=current_user)
+
+
+@views.route('/delete-todo', methods=['GET', 'POST'])
+def delete_todo():
+    todo = json.loads(request.data)
+    todoId = todo['todoId']
+    todo = Todo.query.get(todoId)
+    if todo:
+        if todo.user_id == current_user.id:
+            db.session.delete(todo)
+            db.session.commit()
+
+    return jsonify({})
+
+
+@views.route('/addmeasurelog', methods=['GET', 'POST'])
+@login_required
+def addmeasurelog():
     if request.method == 'POST':
         height = request.form.get('height')
         weight = request.form.get('weight')
@@ -111,14 +139,13 @@ def userProfile():
         if len(height) < 2:
             flash('Text is too short!', category='error')
         else:
-            new_measure_log = MeasureLogs(height=height, weight=weight, hips=hips, waist=waist, upper_arm=upper_arm, chest=chest, thigh=thigh, calf=calf, user_id=current_user.id)
+            new_measure_log = MeasureLogs(height=height, weight=weight, hips=hips, waist=waist,
+                                          upper_arm=upper_arm, chest=chest, thigh=thigh, calf=calf, user_id=current_user.id)
             db.session.add(new_measure_log)
             db.session.commit()
             flash('Wohoo, you added new measurement!', category='success')
 
     return render_template('userProfile.html', title='User Profile', user=current_user)
-
-
 
 
 @views.route('/deletemeasurelog', methods=['GET', 'POST'])
@@ -133,15 +160,29 @@ def delete_measurelog():
 
     return jsonify({})
 
-    
-@views.route('/delete-todo', methods=['GET', 'POST'])
-def delete_todo():
-    todo = json.loads(request.data)
-    todoId = todo['todoId']
-    todo = Todo.query.get(todoId)
-    if todo:
-        if todo.user_id == current_user.id:
-            db.session.delete(todo)
-            db.session.commit()
 
-    return jsonify({})
+@views.route('/calculate', methods=['GET', 'POST'])
+def calculate():
+    return render_template('calculate.html', title='User Profile', user=current_user)
+
+
+@views.route('/bmicm', methods=['GET', 'POST'])
+def calculateBMIcm():
+    bmicm = ''
+    if request.method == 'POST' and 'heightcm' in request.form and 'weightkg1' in request.form:
+        heightBMIcm = float(request.form.get('heightcm'))
+        weightBMIkg = float(request.form.get('weightkg1'))
+        bmicm = round(weightBMIkg/((heightBMIcm/100)**2), 2)
+
+    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm)
+
+@views.route('/bmiinch', methods=['GET', 'POST'])
+def calculateBMIinch():
+    bmiinch = ''
+    if request.method == 'POST' and 'heightinch' in request.form and 'weightpounds' in request.form:
+        heightBMIinch = float(request.form.get('heightinch'))
+        weightBMIpounds = float(request.form.get('weightpounds'))
+        bmicm = round(((weightBMIpounds/(heightBMIinch**2))*703), 2)
+
+    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm)
+
