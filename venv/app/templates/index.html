@@ -1,17 +1,51 @@
 {% extends "foundation.html" %}
 
 {% block content %}
+
 <body>
+
     <section class="hero">
         <div class="hero_inner">
-    <h1>Welcome, {{ user.first_name }}!</h1>
-    <h4> This is your fitness planner. The planner will help you track your measurements, plan your weeks and read about latest news about healthy lifestyle.</h4> 
-    <br> <br>
-    <a href='/plan'><button type="submit" class="btn btn-lg btn-primary">Let's plan</button>
-    </div>   </a>
+            <h1>Welcome, {{ user.first_name }}!</h1>
+            <h4 class="home-body"> This is your fitness planner. The planner will help you track your measurements, plan
+                your weeks and read about latest news about healthy lifestyle.</h4>
+            <br> <br> <br> <br>
+            <a href='/plan'><button type="submit" class="btn btn-lg btn-primary">Let's plan</button>
+        </div> </a>
     </section>
-
+    <div class="column3">
+        <div class="row mb-2">
+            <br>br>
+            <br>
+            <p>
+                <p>    
+            <center><h1>Curated for you</h1></center>
+            <center><h4 class="home-body"> Read about the latest news about healthy lifestyle.</h4></center>
+            <br><br><br><br>
+            {% for article in news_data %}
+            {% if article.image%}
+            <div class="col-md-6">
+                <div class="card bg-dark border-secondary flex-md-row mb-4 box-shadow h-md-250">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-white">Health</strong>
+                        <h3 class="mb-0">
+                            <a class="text-white">{{article.title}}</a>
+                        </h3>
+                        <div class="mb-1 text-muted">{{article.source}}</div>
+                        <p class="card-text mb-auto">{{article.description}}</p>
+                        <a href="{{article.url}}">Read more..</a>
+                    </div>
+                    <img class="card-img-right flex-auto d-none d-md-block" src="{{article.image}}"
+                        data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
+                        style="width: 200px; height: 250px;" data-holder-rendered="true">
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 </body>
-        
-    
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
 {% endblock %}
