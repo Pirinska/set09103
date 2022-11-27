@@ -8,6 +8,44 @@
     <title>Welcome to your Fitness Planner </title>
     {% endif %}
 
+    {% if page == 0 %}
+    <style>
+        .page0 {
+            background-color: #7B28C8 !important;
+        }
+    </style>
+    {% elif page == 1 %}
+    <style>
+        .page1 {
+            background-color: #7B28C8 !important;
+        }
+    </style>
+    {% elif page == 2 %}
+    <style>
+        .page2 {
+            background-color: #7B28C8 !important;
+        }
+    </style>
+    {% elif page == 3 %}
+    <style>
+        .page3 {
+            background-color: #7B28C8 !important;
+        }
+    </style>
+    {% elif page == -2 %}
+        <style>
+            .page-2 {
+                background-color: #7B28C8 !important;
+            }
+        </style>
+    {% elif page == -1 %}
+        <style>
+            .page-1 {
+                background-color: #7B28C8 !important;
+            }
+        </style>
+    {% endif %}
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,27 +74,27 @@
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="/index" class="nav-link">Home</a>
+                        <a href="/index" class="nav-link page0">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/calculate" id="calculate" class="nav-link">Calculate</a>
+                        <a href="/calculate" id="calculate" class="nav-link page1">Calculate</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/plan" id="plan" class="nav-link">Plan</a>
+                        <a href="/plan" id="plan" class="nav-link page2">Plan</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/userProfile" id="userProfile" class="nav-link">User Profile</a>
+                        <a href="/userProfile" id="userProfile" class="nav-link page3">User Profile</a>
                     </li>
                     <li class="nav-item">
                         <a href="/logout" id="logout" class="nav-link">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a href="/" id="login" class="nav-link">Login</a>
+                        <a href="/" id="login" class="nav-link page-1">Login</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="/register" id="register" class="nav-link">Register</a>
+                        <a href="/register" id="register" class="nav-link page-2">Register</a>
                     </li>
                     {% endif %}
 

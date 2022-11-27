@@ -28,7 +28,7 @@ def login():
         else:
             flash('Email does not exist', category='error')
 
-    return render_template('login.html', title='Login', user=current_user)
+    return render_template('login.html', title='Login', user=current_user, page=-1)
 
 
 @views.route('/register', methods=['GET', 'POST'])
@@ -57,7 +57,7 @@ def register():
             login_user(new_user, remember=True)
             flash('You registered successfully', category='success')
             return redirect(url_for('views.index'))
-    return render_template('register.html', title='Register', user=current_user)
+    return render_template('register.html', title='Register', user=current_user, page=-2)
 
 
 @views.route('/logout', methods=['GET', 'POST'])
@@ -73,9 +73,9 @@ def index():
     res = requests.get(f'http://api.mediastack.com/v1/news?access_key=9ac9b232ed136147d61e2df0eb305548&keywords=workout&categories=health&countries=us,gb,ca,au')
     if res.status_code == 200:
         news_data = res.json()
-        return render_template("index.html", news_data = news_data['data'], title='Home', user=current_user)
+        return render_template("index.html", news_data = news_data['data'], title='Home', user=current_user, page=0)
     else:
-        return render_template('index.html', title='Home', user=current_user)
+        return render_template('index.html', title='Home', user=current_user, page=0)
    
 
 
@@ -83,7 +83,7 @@ def index():
 @views.route('/plan', methods=['GET', 'POST'])
 @login_required
 def plan():
-    return render_template('plan.html', title='User Profile', user=current_user)
+    return render_template('plan.html', title='User Profile', user=current_user, page=2)
 
 
 @views.route('/addtodo', methods=['GET', 'POST'])
@@ -100,14 +100,14 @@ def addtodo():
             db.session.commit()
             flash('Wohoo, you added a workout!', category='success')
 
-    return render_template('plan.html', title='Plan', user=current_user)
+    return render_template('plan.html', title='Plan', user=current_user, page=2)
 
 
 @views.route('/userProfile', methods=['GET', 'POST'])
 @login_required
 def userProfile():
 
-    return render_template('userProfile.html', title='User Profile', user=current_user)
+    return render_template('userProfile.html', title='User Profile', user=current_user, page=3)
 
 
 @views.route('/delete-todo', methods=['GET', 'POST'])
@@ -145,7 +145,7 @@ def addmeasurelog():
             db.session.commit()
             flash('Wohoo, you added new measurement!', category='success')
 
-    return render_template('userProfile.html', title='User Profile', user=current_user)
+    return render_template('userProfile.html', title='User Profile', user=current_user, page=3)
 
 
 @views.route('/deletemeasurelog', methods=['GET', 'POST'])
@@ -163,7 +163,7 @@ def delete_measurelog():
 
 @views.route('/calculate', methods=['GET', 'POST'])
 def calculate():
-    return render_template('calculate.html', title='User Profile', user=current_user)
+    return render_template('calculate.html', title='User Profile', user=current_user, page=1)
 
 
 @views.route('/bmicm', methods=['GET', 'POST'])
@@ -174,7 +174,7 @@ def calculateBMIcm():
         weightBMIkg = float(request.form.get('weightkg1'))
         bmicm = round(weightBMIkg/((heightBMIcm/100)**2), 2)
 
-    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm)
+    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm, page=1)
 
 @views.route('/bmiinch', methods=['GET', 'POST'])
 def calculateBMIinch():
@@ -184,5 +184,5 @@ def calculateBMIinch():
         weightBMIpounds = float(request.form.get('weightpounds'))
         bmicm = round(((weightBMIpounds/(heightBMIinch**2))*703), 2)
 
-    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm)
+    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm, page=1)
 
