@@ -10,12 +10,6 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(100))
     todos = db.relationship('Todo')
     measurelogs = db.relationship('MeasureLog')
-    
-class Todo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(500))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class MeasureLog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,3 +23,10 @@ class MeasureLog(db.Model):
     calf = db.Column(db.String(50))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+        
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(500))
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+

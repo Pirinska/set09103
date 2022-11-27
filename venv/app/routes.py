@@ -95,6 +95,45 @@ def plan():
     return render_template('plan.html', title='Plan', user=current_user)
 
 
+@views.route('/userProfile', methods=['GET', 'POST'])
+@login_required
+def userProfile():
+    if request.method == 'POST':
+        height = request.form.get('height')
+        weight = request.form.get('weight')
+        hips = request.form.get('hips')
+        waist = request.form.get('waist')
+        upper_arm = request.form.get('upper_arm')
+        chest = request.form.get('chest')
+        thigh = request.form.get('thigh')
+        calf = request.form.get('calf')
+
+        if len(height) < 2:
+            flash('Text is too short!', category='error')
+        else:
+            new_measure_log = MeasureLog(height=height, weight=weight, hips=hips, waist=waist, upper_arm=upper_arm, chest=chest, thigh=thigh, calf=calf, user_id=current_user.id)
+            db.session.add(new_measure_log)
+            db.session.commit()
+            flash('Wohoo, you added new measurement!', category='success')
+
+    return render_template('userProfile.html', title='User Profile', user=current_user)
+
+
+
+
+@views.route('/deletemeasurelog', methods=['GET', 'POST'])
+def delete_measurelog():
+    measurelog = json.loads(request.data)
+    measurelogId = measurelog['measurelogId']
+    measurelog = MeasureLog.query.get(measurelogId)
+    if measurelog:
+        if measurelog.user_id == current_user.id:
+            db.session.delete(measurelog)
+            db.session.commit()
+            
+    return jsonify({})
+
+    
 @views.route('/delete-todo', methods=['GET', 'POST'])
 def delete_todo():
     todo = json.loads(request.data)
@@ -106,27 +145,3 @@ def delete_todo():
             db.session.commit()
 
     return jsonify({})
-
-
-@views.route('/userProfile', methods=['GET', 'POST'])
-@login_required
-def userProfile():
-    if request.method == 'POST':
-        height1 = request.form.get('height')
-        weight1 = request.form.get('weight')
-        hips1 = request.form.get('hips')
-        waist1 = request.form.get('waist')
-        upper_arm1 = request.form.get('upper_arm')
-        chest1 = request.form.get('chest')
-        thigh1 = request.form.get('thigh')
-        calf1 = request.form.get('calf')
-
-            if len(height1) < 2:
-                flash('Text is too short!', category='error')
-            else:
-                new_measure_log = MeasureLog(height=height1, weight=weight1, hips=hips1, waist=waist1, upper_arm=upper_arm1, chest=chest1, thigh=thigh1, calf=calf1, user_id=current_user.id)
-                db.session.add(new_measure_log)
-                db.session.commit()
-                flash('Wohoo, you added new measurement!', category='success')
-
-    return render_template('userProfile.html', title='User Profile', user=current_user)

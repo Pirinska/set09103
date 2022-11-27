@@ -119,6 +119,9 @@ img {
   height: 100%;
   object-fit: cover;
 }
+p {
+  color:white;
+}
 .column2 {
   width: 50%;
   height: 100%;
