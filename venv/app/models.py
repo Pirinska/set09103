@@ -9,9 +9,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(50))
     first_name = db.Column(db.String(100))
     todos = db.relationship('Todo')
-    measurelogs = db.relationship('MeasureLog')
+    measurelogs = db.relationship('MeasureLogs')
 
-class MeasureLog(db.Model):
+class MeasureLogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     height = db.Column(db.String(50))
     weight = db.Column(db.String(50))

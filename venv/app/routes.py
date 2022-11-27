@@ -2,7 +2,7 @@ import json
 from click import password_option
 from flask import Flask, jsonify, request, render_template, flash, Blueprint, redirect, url_for
 from flask_login import current_user, login_user, logout_user
-from .models import User, Todo, MeasureLog
+from .models import User, Todo, MeasureLogs
 from flask_login import login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -111,7 +111,7 @@ def userProfile():
         if len(height) < 2:
             flash('Text is too short!', category='error')
         else:
-            new_measure_log = MeasureLog(height=height, weight=weight, hips=hips, waist=waist, upper_arm=upper_arm, chest=chest, thigh=thigh, calf=calf, user_id=current_user.id)
+            new_measure_log = MeasureLogs(height=height, weight=weight, hips=hips, waist=waist, upper_arm=upper_arm, chest=chest, thigh=thigh, calf=calf, user_id=current_user.id)
             db.session.add(new_measure_log)
             db.session.commit()
             flash('Wohoo, you added new measurement!', category='success')
@@ -125,12 +125,12 @@ def userProfile():
 def delete_measurelog():
     measurelog = json.loads(request.data)
     measurelogId = measurelog['measurelogId']
-    measurelog = MeasureLog.query.get(measurelogId)
+    measurelog = MeasureLogs.query.get(measurelogId)
     if measurelog:
         if measurelog.user_id == current_user.id:
             db.session.delete(measurelog)
             db.session.commit()
-            
+
     return jsonify({})
 
     
