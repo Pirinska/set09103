@@ -1,5 +1,6 @@
 # Importing needed libraries and database
 from flask_login import UserMixin
+import sqlalchemy
 from . import db
 from sqlalchemy.sql import func
 
@@ -35,3 +36,4 @@ class Todo(db.Model):
     body = db.Column(db.String(500))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+

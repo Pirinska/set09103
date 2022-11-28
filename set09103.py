@@ -8,9 +8,10 @@
 # def make_shell_context():
 #     return {'db': db, 'User': User, 'Todo': Todo, 'MeasureLogs': MeasureLogs}
 
-from app import create_app
+from venv import create_app
 
-app=create_app
+app = create_app()
+
 if __name__ == '__main__':
     app.run(debug=True)
 
