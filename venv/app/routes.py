@@ -70,47 +70,58 @@ def logout():
 @views.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    res = requests.get(f'http://api.mediastack.com/v1/news?access_key=9ac9b232ed136147d61e2df0eb305548&keywords=workout&categories=health&countries=us,gb,ca,au')
+    res = requests.get(
+        f'http://api.mediastack.com/v1/news?access_key=9ac9b232ed136147d61e2df0eb305548&keywords=workout&categories=health&countries=us,gb,ca,au')
     if res.status_code == 200:
         news_data = res.json()
-        return render_template("index.html", news_data = news_data['data'], title='Home', user=current_user, page=0)
+        return render_template("index.html", news_data=news_data['data'], title='Home', user=current_user, page=0)
     else:
         return render_template('index.html', title='Home', user=current_user, page=0)
-   
-
 
 
 @views.route('/plan', methods=['GET', 'POST'])
 @login_required
 def plan():
-    return render_template('plan.html', title='User Profile', user=current_user, page=2)
+        if request.method == 'POST':
+            todo = request.form.get('todo')
+            if len(todo) < 3:
+                flash('Text is too short!', category='error')
+            else:
+                new_todo = Todo(body=todo, user_id=current_user.id)
+                db.session.add(new_todo)
+                db.session.commit()
+                flash('Wohoo, you added a workout!', category='success')
+            return redirect(url_for('views.plan'))
+        return render_template('plan.html', title='User Profile', user=current_user, page=2)
 
-
-@views.route('/addtodo', methods=['GET', 'POST'])
-@login_required
-def addtodo():
-    if request.method == 'POST':
-        todo = request.form.get('todo')
-
-        if len(todo) < 3:
-            flash('Text is too short!', category='error')
-        else:
-            new_todo = Todo(body=todo, user_id=current_user.id)
-            db.session.add(new_todo)
-            db.session.commit()
-            flash('Wohoo, you added a workout!', category='success')
-
-    return render_template('plan.html', title='Plan', user=current_user, page=2)
 
 
 @views.route('/userProfile', methods=['GET', 'POST'])
 @login_required
 def userProfile():
-
-    return render_template('userProfile.html', title='User Profile', user=current_user, page=3)
+        if request.method == 'POST':
+            height = request.form.get('height')
+            weight = request.form.get('weight')
+            hips = request.form.get('hips')
+            waist = request.form.get('waist')
+            upper_arm = request.form.get('upper_arm')
+            chest = request.form.get('chest')
+            thigh = request.form.get('thigh')
+            calf = request.form.get('calf')
+            if len(height) < 2:
+                flash('Text is too short!', category='error')
+            else:
+                new_measure_log = MeasureLogs(height=height, weight=weight, hips=hips, waist=waist,
+                                          upper_arm=upper_arm, chest=chest, thigh=thigh, calf=calf, user_id=current_user.id)
+                db.session.add(new_measure_log)
+                db.session.commit()
+                flash('Wohoo, you added new measurement!', category='success')
+            return redirect(url_for('views.userProfile'))
+        return render_template('userProfile.html', title='User Profile', user=current_user, page=3)
 
 
 @views.route('/delete-todo', methods=['GET', 'POST'])
+@login_required
 def delete_todo():
     todo = json.loads(request.data)
     todoId = todo['todoId']
@@ -122,33 +133,8 @@ def delete_todo():
 
     return jsonify({})
 
-
-@views.route('/addmeasurelog', methods=['GET', 'POST'])
-@login_required
-def addmeasurelog():
-    if request.method == 'POST':
-        height = request.form.get('height')
-        weight = request.form.get('weight')
-        hips = request.form.get('hips')
-        waist = request.form.get('waist')
-        upper_arm = request.form.get('upper_arm')
-        chest = request.form.get('chest')
-        thigh = request.form.get('thigh')
-        calf = request.form.get('calf')
-
-        if len(height) < 2:
-            flash('Text is too short!', category='error')
-        else:
-            new_measure_log = MeasureLogs(height=height, weight=weight, hips=hips, waist=waist,
-                                          upper_arm=upper_arm, chest=chest, thigh=thigh, calf=calf, user_id=current_user.id)
-            db.session.add(new_measure_log)
-            db.session.commit()
-            flash('Wohoo, you added new measurement!', category='success')
-
-    return render_template('userProfile.html', title='User Profile', user=current_user, page=3)
-
-
 @views.route('/deletemeasurelog', methods=['GET', 'POST'])
+@login_required
 def delete_measurelog():
     measurelog = json.loads(request.data)
     measurelogId = measurelog['measurelogId']
@@ -162,11 +148,13 @@ def delete_measurelog():
 
 
 @views.route('/calculate', methods=['GET', 'POST'])
+@login_required
 def calculate():
     return render_template('calculate.html', title='User Profile', user=current_user, page=1)
 
 
 @views.route('/bmicm', methods=['GET', 'POST'])
+@login_required
 def calculateBMIcm():
     bmicm = ''
     if request.method == 'POST' and 'heightcm' in request.form and 'weightkg1' in request.form:
@@ -177,12 +165,13 @@ def calculateBMIcm():
     return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm, page=1)
 
 @views.route('/bmiinch', methods=['GET', 'POST'])
+@login_required
 def calculateBMIinch():
     bmiinch = ''
     if request.method == 'POST' and 'heightinch' in request.form and 'weightpounds' in request.form:
         heightBMIinch = float(request.form.get('heightinch'))
         weightBMIpounds = float(request.form.get('weightpounds'))
-        bmicm = round(((weightBMIpounds/(heightBMIinch**2))*703), 2)
+        bmiinch = round(((weightBMIpounds/(heightBMIinch**2))*703), 2)
 
-    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm, page=1)
+    return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmiinch, page=1)
 
