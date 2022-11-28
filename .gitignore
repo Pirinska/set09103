@@ -12,7 +12,6 @@ build
 eggs
 parts
 bin
-var
 sdist
 develop-eggs
 .installed.cfg
@@ -37,6 +36,6 @@ nosetests.xml
 .pydevproject
 
 Include
-#venv
-# app.db
-# set09103.log*
+venv
+var\app-instance
+set09103.log*
