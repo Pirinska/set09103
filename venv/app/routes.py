@@ -3,7 +3,7 @@ from click import password_option
 from flask import Flask, jsonify, request, render_template, flash, Blueprint, redirect, url_for
 from flask_login import current_user, login_user, logout_user
 import requests
-from .models import User, Todo, MeasureLogs
+from app.models import User, Todo, MeasureLogs
 from flask_login import login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
