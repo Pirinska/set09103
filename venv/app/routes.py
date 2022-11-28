@@ -8,9 +8,11 @@ from flask_login import login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 
+# Blueprint is a concept for making application components. It simplifies how large application work.
 views = Blueprint('views', __name__)
 
 
+# Login route - taking the login details and checkes if the hashed password and the email are correct.
 @views.route('/',  methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -30,7 +32,7 @@ def login():
 
     return render_template('login.html', title='Login', user=current_user, page=-1)
 
-
+# Register route - takes register data, checkes if all requirements are fullfilled and hashes password
 @views.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -59,26 +61,29 @@ def register():
             return redirect(url_for('views.index'))
     return render_template('register.html', title='Register', user=current_user, page=-2)
 
-
+# Logout route - uses logout function and displays the login page
 @views.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('views.login'))
 
-
+# Index (Home) route - use of Media Stack API
+# The API loads artcle in the health category from GB, Canada, AU and USA
 @views.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
     res = requests.get(
         f'http://api.mediastack.com/v1/news?access_key=9ac9b232ed136147d61e2df0eb305548&keywords=workout&categories=health&countries=us,gb,ca,au')
+    # The if statement checks if the data request is successful
+    # If it's successfull it converts the data in JSON and pass it to the html otherwise it doesn't pass it
     if res.status_code == 200:
         news_data = res.json()
         return render_template("index.html", news_data=news_data['data'], title='Home', user=current_user, page=0)
     else:
         return render_template('index.html', title='Home', user=current_user, page=0)
 
-
+# Plan route - checks if there are any logged upcoming workouts and displays them
 @views.route('/plan', methods=['GET', 'POST'])
 @login_required
 def plan():
@@ -95,12 +100,12 @@ def plan():
         return render_template('plan.html', title='User Profile', user=current_user, page=2)
 
 
-
+# User profile - take the Measurelog data from the database and displays it
 @views.route('/userProfile', methods=['GET', 'POST'])
 @login_required
 def userProfile():
         if request.method == 'POST':
-            height = request.form.get('height')
+            height = request.form.get('height' )
             weight = request.form.get('weight')
             hips = request.form.get('hips')
             waist = request.form.get('waist')
@@ -120,6 +125,7 @@ def userProfile():
         return render_template('userProfile.html', title='User Profile', user=current_user, page=3)
 
 
+# Delete-todo deletes a specifici workout from the database
 @views.route('/delete-todo', methods=['GET', 'POST'])
 @login_required
 def delete_todo():
@@ -133,6 +139,7 @@ def delete_todo():
 
     return jsonify({})
 
+# Deletes measurelog from the database
 @views.route('/deletemeasurelog', methods=['GET', 'POST'])
 @login_required
 def delete_measurelog():
@@ -146,29 +153,32 @@ def delete_measurelog():
 
     return jsonify({})
 
-
+# Loads Calculate page with the BMI calculators
 @views.route('/calculate', methods=['GET', 'POST'])
 @login_required
 def calculate():
     return render_template('calculate.html', title='User Profile', user=current_user, page=1)
 
-
+# Takes the height in cm and weight in kg and calculates the BMI
 @views.route('/bmicm', methods=['GET', 'POST'])
 @login_required
 def calculateBMIcm():
     bmicm = ''
     if request.method == 'POST' and 'heightcm' in request.form and 'weightkg1' in request.form:
+        # transforms the logged data into float
         heightBMIcm = float(request.form.get('heightcm'))
         weightBMIkg = float(request.form.get('weightkg1'))
         bmicm = round(weightBMIkg/((heightBMIcm/100)**2), 2)
 
     return render_template('calculate.html', title='User Profile', user=current_user, bmicm=bmicm, page=1)
 
+# Takes the height in inch and the weight in pounds and calculaters the BMI
 @views.route('/bmiinch', methods=['GET', 'POST'])
 @login_required
 def calculateBMIinch():
     bmiinch = ''
     if request.method == 'POST' and 'heightinch' in request.form and 'weightpounds' in request.form:
+        
         heightBMIinch = float(request.form.get('heightinch'))
         weightBMIpounds = float(request.form.get('weightpounds'))
         bmiinch = round(((weightBMIpounds/(heightBMIinch**2))*703), 2)

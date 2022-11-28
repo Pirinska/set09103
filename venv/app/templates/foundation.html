@@ -8,6 +8,7 @@
     <title>Welcome to your Fitness Planner </title>
     {% endif %}
 
+    <!-- If statement to track the states of the pages and stylise them different if they are active  -->
     {% if page == 0 %}
     <style>
         .page0 {
@@ -33,19 +34,19 @@
         }
     </style>
     {% elif page == -2 %}
-        <style>
-            .page-2 {
-                background-color: #7B28C8 !important;
-            }
-        </style>
+    <style>
+        .page-2 {
+            background-color: #7B28C8 !important;
+        }
+    </style>
     {% elif page == -1 %}
-        <style>
-            .page-1 {
-                background-color: #7B28C8 !important;
-            }
-        </style>
+    <style>
+        .page-1 {
+            background-color: #7B28C8 !important;
+        }
+    </style>
     {% endif %}
-
+    <!-- Bootstrap stylesheets and favicon imported -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,6 +61,7 @@
 
 
 </head>
+<!-- Navigation bar code -->
 
 <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -102,7 +104,7 @@
             </div>
         </div>
     </nav>
-
+    <!-- Message flashing with boostrap styling -->
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
     'error' %}
@@ -125,8 +127,8 @@
 
     </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %}
-    {% block content %}{% endblock %} 
-
+    {% block content %}{% endblock %}
+    <!-- Scripts with jQuery and Bootstrap classes to -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>

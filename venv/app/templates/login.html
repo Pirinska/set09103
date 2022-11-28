@@ -1,38 +1,40 @@
+<!-- The foundation template inserts styles, nav bar and scripts -->
 {% extends "foundation.html" %}
 {% block content %}
 
 
 <body>
+    <!-- Column 1 displays the login form - simple input and labeling (Bootstrap classes)-->
     <div class="column1">
         <br> <br> <br>
         <h1>Welcome back,</h1>
         <h4>We missed you. Impact have curated for you the latest articles about healthy lifestyle.</h4>
         <br>
-            <form method="POST">
+        <form method="POST">
 
-                <div class="mb-3">
-                    <label class="form-label" for="inputEmail"></label>
-                    <input type="email" class="form-control-lg" id="inputEmail" placeholder="Email" name="email"
-                        required>
+            <div class="mb-3">
+                <label class="form-label" for="inputEmail"></label>
+                <input type="email" class="form-control-lg" id="inputEmail" placeholder="Email" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="inputPassword"></label>
+                <input type="password" class="form-control-lg" id="inputPassword" placeholder="Password"
+                    name="inputPassword" required>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkRemember">
+                    <label class="form-check-label" for="checkRemember">Remember me</label>
                 </div>
+            </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="inputPassword"></label>
-                    <input type="password" class="form-control-lg" id="inputPassword" placeholder="Password"
-                        name="inputPassword" required>
-                </div>
-
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkRemember">
-                        <label class="form-check-label" for="checkRemember">Remember me</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-lg btn-primary">Login</button>
-            </form>
-            <br>
-        </div>
+            <button type="submit" class="btn btn-lg btn-primary">Login</button>
+        </form>
+        <br>
+    </div>
+    <!-- Column 2 displays a cover image -->
     <div class="column2">
         <img src="static/images/login02.jpg" alt="man wathching the sunset">
     </div>

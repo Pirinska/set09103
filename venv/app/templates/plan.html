@@ -1,14 +1,15 @@
+<!-- The foundation template inserts styles, nav bar and scripts -->
 {% extends "foundation.html" %}
-
 {% block content %}
 
 <body>
         <div class="column1">
-
+                <!-- Column 1 enables the user to plan their weekly workouts and add ntoes -->
                 <br>
                 <h1>Upcoming workouts</h1>
                 <h4>Plan your workout sessions this week.</h4>
                 <br>
+                <!-- textarea to add notes -->
                 <form method="POST">
                         <div class="addWorkout">
                                 <textarea name="todo" id="'todo" class="form-control"></textarea>
@@ -20,9 +21,11 @@
                 <br>
                 <br>
                 <br>
+                <!-- for loop to display the upcoming workouts.  -->
                 <ul class="list-group list-group" id="todos" color="#000000">
                         {% for todo in user.todos %}
                         <li class="list-group-item">
+                                <!-- each workout log shows the workout details (Type of workout, day etc) and the date added -->
                                 <b>Workout details: </b> {{ todo.body }}
 
                                 <button type="button" class="btn btn-close-white float-end"
@@ -38,8 +41,11 @@
                 </ul>
 
         </div>
+        <br> <br>
         </div>
+        <br> <br>
         <div class="column2">
+                <!-- Column 2 displayes a cover image -->
                 <img src="static/images/plan-quote.jpg" alt="quote - difficult roads lead to beautiful situations">
         </div>
         <script type="text/javascript" src="{{ url_for('static', filename='foundation.js') }}"></script>

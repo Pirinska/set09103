@@ -3,12 +3,10 @@
 
 body {
   font-family: "Inter", sans-serif;
-}
-
-body {
   background-color: #212529;
 }
 
+/* Bootstrap navbar styling */
 .navbar {
   -webkit-box-shadow: 0 8px 6px -6px rgba(240, 240, 240, 0.253);
   -moz-box-shadow: 0 8px 6px -6px rgba(240, 240, 240, 0.253);
@@ -42,16 +40,18 @@ body {
   font-size: 20px;
 
 }
+
 .nav-link {
-  color:white;
+  color: white;
 }
 
+/* Bootstrap icon */
 .fa-bars {
   color: #FFFFFF;
   font-size: 30px;
 }
 
-
+/* Specific components styling */
 h1 {
   font-family: "Syne", bold;
   font-size: 2.5em;
@@ -59,7 +59,9 @@ h1 {
   color: white;
 }
 
-h4, h2,h5 {
+h4,
+h2,
+h5 {
   color: white;
 }
 
@@ -67,11 +69,28 @@ h4, h2,h5 {
   color: white;
 }
 
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+p {
+  color: white;
+}
+
+.list-group-item {
+  color: white;
+  background-color: #212529;
+  border-color: #FFFFFF;
+}
+
 
 .labels {
   color: #FFFFFF;
 }
 
+/* Hero section on the homepage - styling */
 .hero {
   width: 100vw;
   height: 80vh;
@@ -86,8 +105,7 @@ h4, h2,h5 {
   background-attachment: fixed;
 }
 
-
-
+/* Ovveriding bootstrap buttons colour */
 .btn-primary {
 
   background-color: #7B28C8;
@@ -97,60 +115,58 @@ h4, h2,h5 {
   background-color: #471a72;
 
 }
+
+/* Main columns styles - desktop */
 .column1 {
   margin: 0px 0px 0px 50px;
   width: 35%;
   float: left;
 }
-.column3 {
-  margin: 0px 0px 0px 50px;
-  width: 90%;
-  float: left;
-  height: 1300px;
-}
-.measure-item {
-  width:160px;
-}
-.measure-item textarea {
-  resize: none;
 
-  height:40px;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-p {
-  color:white;
-}
 .column2 {
   width: 50%;
   height: 100%;
   float: right;
 }
 
-.list-group-item {
-  color:white;
-  background-color: #212529;
-  border-color: #FFFFFF;
+.column3 {
+  margin: 0px 0px 0px 50px;
+  width: 90%;
+  float: left;
+  height: 1300px;
 }
 
+/* Styling of measurement's textarea */
+.measure-item {
+  width: 160px;
+}
+
+.measure-item textarea {
+  resize: none;
+  height: 40px;
+}
+
+
+/* Mobile screen - responsive layout */
 @media screen and (max-width: 600px) {
 
-  .column1, .column3 {
-    width:80%;
+  .column1,
+  .column3 {
+    width: 80%;
 
   }
+
   .column2 {
     width: 100%;
   }
-  h1, h4 {
-    width:80%;
-    margin:none;
+
+  h1,
+  h4 {
+    width: 80%;
+    margin: none;
   }
-  }
-  .home-body {
-    width: 70vw;
-  }
+}
+
+.home-body {
+  width: 70vw;
+}

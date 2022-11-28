@@ -1,16 +1,19 @@
+<!-- The foundation template inserts styles, nav bar and scripts -->
 {% extends "foundation.html" %}
+<!-- Tracking active page -->
 {% set active_page = "index" %}
 
 {% block content %}
 
 
 <body>
+       <!-- Column 1 consists of a boostrap card with tabs. The tabs open toggle between imperial and metric BMI calculator. -->
        <div class="column1">
               <br>
               <h1>BMI calculator</h1>
               <h4>Check your current body mass index.</h4>
               <br>
-               <br>
+              <br>
               <div class="card text-white bg-dark border-secondary ">
                      <div class="container shadow min-vh-50 py-2">
                             <div class="container network_wrapper col-sm p-2 ">
@@ -19,7 +22,7 @@
                                                  <div class="container network_wrapper col-sm p-2 ">
 
                                                         <div class="card-header border-secondary">
-                                                               
+
                                                                <ul class="nav nav-tabs card-header-tabs border-secondary"
                                                                       data-bs-tabs="tabs">
                                                                       <li class="nav-item border-secondary">
@@ -37,7 +40,7 @@
                                                         </div>
 
                                                         <div class="card-body tab-content border-secondary">
-
+                                                               <!-- Metric BMI calculator code. Python code calculates the logged measures on the page -->
                                                                <div class="tab-pane active border-secondary" id="cm2">
                                                                       <form action="/bmicm" method="POST">
                                                                              <br>
@@ -57,8 +60,9 @@
                                                                                                   placeholder="WEIGHT"
                                                                                                   name="weightkg1"
                                                                                                   required></textarea>
+                                                                                                  <br>
                                                                                     </div>
-                                                                                    <br>
+                                                                                    
                                                                                     <div class="measure-item">
 
                                                                                            <textarea type="text"
@@ -75,6 +79,7 @@
                                                                                     type="submit">Calculate
                                                                                     BMI</button>
                                                                              <br> <br>
+                                                                             <!-- Showing the calculated result -->
                                                                              <h5>Your BMI results:
                                                                                     {% if bmicm %}
                                                                                     {{bmicm}}
@@ -83,9 +88,11 @@
 
 
                                                                       </form>
+                                                                      
                                                                </div>
+                                                               
 
-
+                                                               <!-- Imperial BMI calculator code. Python code calculates the logged measures on the page -->
                                                                <div class="tab-pane border-secondary" id="inch2">
                                                                       <form action="/bmiinch" method="POST">
                                                                              <br>
@@ -93,7 +100,7 @@
                                                                                     height
                                                                                     and
                                                                                     weight?</h4>
-                                                                             <p class="card-text" *>Please enter your
+                                                                             <p class="card-text">*Please enter your
                                                                                     height in inches and your weight in
                                                                                     pounds.</p>
                                                                              <div class="row">
@@ -104,8 +111,9 @@
                                                                                                   placeholder="WEIGHT"
                                                                                                   name="weightpounds"
                                                                                                   required></textarea>
+                                                                                                  <br>
                                                                                     </div>
-                                                                                    <br>
+                                                                                    
                                                                                     <div class="measure-item">
                                                                                            <textarea type="text"
                                                                                                   class="form-control"
@@ -121,6 +129,7 @@
                                                                                     type="submit">Calculate
                                                                                     BMI</button>
                                                                              <br> <br>
+                                                                             <!-- Showing the calculated result -->
                                                                              <h5>Your BMI results:
                                                                                     {% if bmicm %}
                                                                                     {{bmicm}}
@@ -129,71 +138,72 @@
                                                                       </form>
 
                                                                </div>
-                                                        
-                                                        
-                                                        <p>This is the World Health Organization's (WHO)
-                                                               recommended body weight based on BMI values
-                                                               for adults. It is used for people aged 20
-                                                               or older. For more information, open the
-                                                               url:
-                                                               https://www.calculator.net/bmi-calculator.html
-                                                        </p>
-                                                        <br>
-                                                        <table class="table table-dark">
-                                                               <thead>
-                                                                      <tr>
-                                                                             <th scope="col">#</th>
-                                                                             <th scope="col">Category</th>
-                                                                             <th scope="col">BMI range -
-                                                                                    kg/m2</th>
 
-                                                                      </tr>
-                                                               </thead>
-                                                               <tbody>
-                                                                      <tr>
-                                                                             <th scope="row">1</th>
-                                                                             <td>Severe Thinness</td>
-                                                                             <td> &lt;16 </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                             <th scope="row">2</th>
-                                                                             <td>Moderate Thinness</td>
-                                                                             <td> 16-17 </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                             <th scope="row">3</th>
-                                                                             <td>Mild Thinness</td>
-                                                                             <td> 17-18.5 </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                             <th scope="row">4</th>
-                                                                             <td>Normal</td>
-                                                                             <td> 18.5-25 </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                             <th scope="row">5</th>
-                                                                             <td>Overweight</td>
-                                                                             <td> 25-30 </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                             <th scope="row">5</th>
-                                                                             <td>Obese Class 1</td>
-                                                                             <td> 30-35 </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                             <th scope="row">6</th>
-                                                                             <td>Obese Class 2</td>
-                                                                             <td> 35-40 </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                             <th scope="row">7</th>
-                                                                             <td>Obese Class 3</td>
-                                                                             <td> &lt;40 </td>
-                                                                      </tr>
 
-                                                               </tbody>
-                                                        </table>
-                                                        <br>
+                                                               <p>This is the World Health Organization's (WHO)
+                                                                      recommended body weight based on BMI values
+                                                                      for adults. It is used for people aged 20
+                                                                      or older. For more information, open the
+                                                                      url:
+                                                                      https://www.calculator.net/bmi-calculator.html
+                                                               </p>
+                                                               <br>
+                                                               <!-- A table generated with bootstrap classes showing the BMI values for adults -->
+                                                               <table class="table table-dark">
+                                                                      <thead>
+                                                                             <tr>
+                                                                                    <th scope="col">#</th>
+                                                                                    <th scope="col">Category</th>
+                                                                                    <th scope="col">BMI range -
+                                                                                           kg/m2</th>
+
+                                                                             </tr>
+                                                                      </thead>
+                                                                      <tbody>
+                                                                             <tr>
+                                                                                    <th scope="row">1</th>
+                                                                                    <td>Severe Thinness</td>
+                                                                                    <td> &lt;16 </td>
+                                                                             </tr>
+                                                                             <tr>
+                                                                                    <th scope="row">2</th>
+                                                                                    <td>Moderate Thinness</td>
+                                                                                    <td> 16-17 </td>
+                                                                             </tr>
+                                                                             <tr>
+                                                                                    <th scope="row">3</th>
+                                                                                    <td>Mild Thinness</td>
+                                                                                    <td> 17-18.5 </td>
+                                                                             </tr>
+                                                                             <tr>
+                                                                                    <th scope="row">4</th>
+                                                                                    <td>Normal</td>
+                                                                                    <td> 18.5-25 </td>
+                                                                             </tr>
+                                                                             <tr>
+                                                                                    <th scope="row">5</th>
+                                                                                    <td>Overweight</td>
+                                                                                    <td> 25-30 </td>
+                                                                             </tr>
+                                                                             <tr>
+                                                                                    <th scope="row">5</th>
+                                                                                    <td>Obese Class 1</td>
+                                                                                    <td> 30-35 </td>
+                                                                             </tr>
+                                                                             <tr>
+                                                                                    <th scope="row">6</th>
+                                                                                    <td>Obese Class 2</td>
+                                                                                    <td> 35-40 </td>
+                                                                             </tr>
+                                                                             <tr>
+                                                                                    <th scope="row">7</th>
+                                                                                    <td>Obese Class 3</td>
+                                                                                    <td> &lt;40 </td>
+                                                                             </tr>
+
+                                                                      </tbody>
+                                                               </table>
+                                                               <br>
                                                         </div>
                                                  </div>
                                           </div>
@@ -206,9 +216,10 @@
 
 
        </div>
+       <!-- Column 2 consists of single image stylised as a cover -->
        <div class="column2">
               <img src="static/images/calculate.jpg" alt="two people doing workout">
-      </div>
+       </div>
 
 </body>
 {% endblock %}
