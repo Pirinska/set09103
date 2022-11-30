@@ -1,5 +1,4 @@
 import json
-from click import password_option
 from flask import Flask, jsonify, request, render_template, flash, Blueprint, redirect, url_for
 from flask_login import current_user, login_user, logout_user
 import requests
@@ -8,7 +7,7 @@ from flask_login import login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 
-# Blueprint is a concept for making application components. It simplifies how large application work.
+# Blueprint is a concept for making application components. It simplifies how large applicationS work.
 views = Blueprint('views', __name__)
 
 
